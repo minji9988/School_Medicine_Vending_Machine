@@ -1,8 +1,7 @@
-########Main 코드#########
+######## Main 코드#########
 
 ###### 약 자판기 종료 메세지 출력 함수 ##### 
 from Close_Message import Close_Message
-
 
 
 ###### 약 자판기 환영 메세지 출력 함수 ##### 
@@ -80,13 +79,13 @@ def Student_DB():
 
 Student_DB()
 
-######### 약 자판기 사용시 주의사항 출력  ######### - 윤민녕 코드
+######### 약 자판기 사용시 주의사항 출력  ######### - 캥거루 코드
 from Notice import Notice
 Notice()
 
 
 
-######### 자판기에서 판매 중인 약 리스트 출력  ######### - 윤민녕 코드
+######### 자판기에서 판매 중인 약 리스트 출력  ######### - 캥거루 코드
 
 # 각각의 약 수량을 20개로 설정하는 코드
 
@@ -118,7 +117,7 @@ for i in range(1, 21):
         pass
 
 
-# 판매중인 약 리스트를 호출하는 코드 - 윤민녕 코드
+# 판매중인 약 리스트를 호출하는 코드 -  캥거루 코드
 from Medicine_List import Vending_Machine_Medicine_List
 Vending_Machine_Medicine_List()
 
