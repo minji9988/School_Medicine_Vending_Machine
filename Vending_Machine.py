@@ -1,53 +1,35 @@
 ######## Main 코드#########
 
-###### 약 자판기 종료 메세지 출력 함수 ##### 
+# 프로그램 종료 메세지
 from Close_Message import Close_Message
 
-
-###### 약 자판기 환영 메세지 출력 함수 ##### 
+# 프로그램 시작 메세지 출력
 from Welcom_Message import Welcome_Message
 Welcome_Message()
 
 
-
-
-#########   학생 본인확인을 위한 구문   ##########
-
-
-# 학생들의 학번과 이름을 저장한 Name_List 변수 선언
-
+#  Name_List: 학생의 학번과 이름을 저장한 변수
 Name_List = {'22206425' : '토끼', '20206243' : '나비', 
         '20212444' : '캥거루', '202454544' : '부엉이' }
 
 
-# 학생이 약을 선택하면 각 학생이 선택한 약이
-# 저장되는 Medicin_List 변수 선언
-
-# 예) 토끼가 타이레놀과 부루펜을 선택했다면
-# 토끼의 학번인 22206425에 있는 [] 빈 리스트에 ["타이레놀", "부루펜"]
-# 이런 식으로 토끼가 선택한 약이 저장된다.
-
+# Medicine_List: 학생이 선택한 약이 저장되는 변수
 Medicine_List = {'22206425' : [], 
 '20206243' : [], '20212444' : [], '202454544' : [] }
 
+# 예) 토끼학생이 타이레놀과 부루펜을 선택했다면
+# 토끼의 학번인 22206425에 있는 [] 빈 리스트에 ["타이레놀", "부루펜"] 형식으로 저장됨
 
 
-
-#학생의 학번을 담을 Student_Number 변수 선언
-# Name_List에 있는 학번(key)을 입력하면
-# 학번에 해당하는 이름(value)이 출력된다.
-# 예) 토끼가 22206425를 입력하면
-# "토끼"란 이름이 출력된다. 
-# 출력구문은 print(f"안녕하세요, {Student_Name}님") 을 통해 출력된다.
-
+# Student_Numeber: 학생 학번을 입력받는 변수
 Student_Number = input("\t\t      본인 확인을 위해 '학번'을 입력해주세요. \n\n\t\t\t\t  99번. 종료하기 \n\n\n\n\n") 
 
 
-# 동물학교 학생인지 확인하는 Student_DB 함수 생성
+# Student_DB: 동물학교 학생인지 확인하는 함수
 def Student_DB():
         global Student_Number
         while True :                
-                # 1) 학생이 프로그램을 종료하고 싶은 경우
+                # 1) 학생이 프로그램을 종료하려는 경우
                 if Student_Number == '99':
                       Close_Message()
 
@@ -55,13 +37,13 @@ def Student_DB():
                 elif Student_Number in Name_List:
                         Student_Name = Name_List[Student_Number]
 
-                        # 2-1) 학생이 오늘 하루 약을 2개 이하 구매한 학생인 경우 다음으로 넘어간다.
+                        # 2-1) 학생이 오늘 하루 약을 2개 이하 구매한 학생인 경우 
                         if Student_Number in Name_List and len(Medicine_List[Student_Number]) < 3 :
                                 print(f"안녕하세요, {Student_Name}님")
                                 break
                         
                         #2-2) 학생이 오늘 하루 약을 3개 구매한 학생이라면 프로그램이 종료된다.
-                        #약물남용 및 타 학우들을 위해 하루에 1인당 3개의 약만 구매할 수 있도록 제한했다.
+                        # 약물남용 및 타 학우들을 위해 하루에 1인당 3개의 약만 구매할 수 있도록 제한했다.
                         elif Student_Number in Name_List and len(Medicine_List[Student_Number]) == 3 :
                                 num = input("하루에 구매할 수 있는 약은 최대 3개 입니다.\n다음에 다시 이용해주시기 바랍니다.\n99번: 종료하기 ") #num=종료 변수
                                 if num == '99':
@@ -76,18 +58,15 @@ def Student_DB():
                                 
 
 
-
 Student_DB()
 
-######### 약 자판기 사용시 주의사항 출력  ######### - 캥거루 코드
+
+# 약 자판기 사용시 주의사항 출력
 from Notice import Notice
 Notice()
 
 
-
-######### 자판기에서 판매 중인 약 리스트 출력  ######### - 캥거루 코드
-
-# 각각의 약 수량을 20개로 설정하는 코드
+# 각각의 약 수량을 20개로 설정
 
 tylenol = []
 ezn = []
@@ -117,23 +96,16 @@ for i in range(1, 21):
         pass
 
 
-# 판매중인 약 리스트를 호출하는 코드 -  캥거루 코드
+# 자판기에서 판매중인 약 리스트 호출
 from Medicine_List import Vending_Machine_Medicine_List
 Vending_Machine_Medicine_List()
 
 
 
-############### 약 수량 감소 기능 ################# 
-
-# 학생이 약을 선택했다면
-# 약의 수량이 감소해야 한다.
-# 예) 타이레놀이 20개 있었는데 토끼가 타이레놀 한 개를 선택했다면
-# 타이레놀의 수량이 19개로 줄어야 한다.
-
+# 약 수량 감소 기능 
 
 # 약 변수 지정
 # 변수 지정 이유: 리스트에 추가할 수 있는 건 변수뿐이기 때문
-# Medicine_List[Student_Number].append(buypill 또는 지정한 변수만 넣을 수 있음)
 a= '타이레놀'
 b= '이지엔6'
 c= '부루펜'
@@ -142,19 +114,9 @@ e= '판콜'
 f= '베아제'
 
 
-
 # 아래의 buy_additional() 함수는 학생이 약을 선택하면 약 리스트에서 수량이 줄어들도록 하는 함수다.
 # 예) 타이레놀이 총 20개 있는데 학생이 타이레놀을 선택했다면
 # 타이레놀 수량이 19개로 줄어드는 것이다.
-
-# buy_additional1,  buy_additional2, buy_additional3이 있는 이유는
-# 학생이 약을 1개 선택하고 바로 8번 버튼(결제하기)를 눌러서
-# 결제창으로 바로 넘어가게 하기 위해선 buy_additional 함수가 3개가 필요했다.
-
-# 학생이 약을 1개 선택했을 경우, 2개 선택했을 경우, 3개 선택했을 경우에 맞춰서
-# 함수를 만들어줘야 8번 버튼(결제창 넘어가기 버튼)을 눌렀을 때 바로 결제창으로 넘어간다.
-# 이렇게 함수를 3개 만들지 않게 된다면 학생이 약을 1개 선택하고
-# 8번을 눌러서 결제창으로 넘어가고자 할 때 8번을 2번 눌러야 결제창으로 이동하는 번거로움이 따른다.
 
 
 def buy_additional1():
@@ -238,23 +200,29 @@ def buy_additional3():
                 break
             
 
-      
-#만약 학생이 하루에 약을 1개 선택했을 때 실행되는 것 
+# buy_additional1,  buy_additional2, buy_additional3이 있는 이유
+# 학생이 약을 1개 선택하고 바로 8번 버튼(결제하기)를 눌러서
+# 결제창으로 바로 넘어가게 하기 위해선 buy_additional 함수가 3개가 필요했다.
+# 학생이 약을 1개 선택했을 경우, 2개 선택했을 경우, 3개 선택했을 경우에 맞춰서
+# 함수를 만들어줘야 8번 버튼(결제창 넘어가기)을 눌렀을 때 바로 결제창으로 넘어간다.
+# 이렇게 함수를 3개 만들지 않게 된다면 학생이 약을 1개 선택하고
+# 8번을 눌러서 결제창으로 넘어가고자 할 때 8번을 2번 눌러야 결제창으로 이동하는 번거로움이 따른다.      
+
+
+#학생이 약을 1개 선택했을 때
 if Student_Number in Name_List and len(Medicine_List[Student_Number]) == 1 :
         buy_additional1()
                                 
-#만약 학생이 하루에 약을 2개 선택했을 때 실행되는 것 
+# 학생이 약을 2개 선택했을 때 
 elif Student_Number in Name_List and len(Medicine_List[Student_Number]) == 2 :
         buy_additional2()
 
-#만약 학생이 하루에 약을 0개 선택했을 때 실행되는 것
+# 학생이 약을 0개 선택했을 때 실행
 elif Student_Number in Name_List and len(Medicine_List[Student_Number]) == 0 :
         buy_additional3()
                 
 
-# 사용자가 선택한 약을 보여주고,
-# 선택한 약을 구매할 건지 묻는 choice 함수 선언   
-
+# choice 함수: 사용자가 선택한 약을 보여주는 함수
 # 예) 만약 토끼가 부루펜과 타이레놀을 선택했다면
 # 구매하실 약이 [부루펜, 타이레놀] 이 맞습니까? 라고 뜬다.
  
@@ -277,17 +245,17 @@ choice()
 
 
 
-#################  결제 기능 ###################### 
+# 결제 기능 
 
 # 학생이 선택한 약 가격을 모두 더한 후, 지불할 돈을 계산해서 보여주고
 # 잔돈을 거슬러 주거나 부족한 돈을 추가로 지불할 수 있도록 구현
 
 
-# 학생이 선택한 모든 약의 가격을 담는 변수 Total 
+# 학생이 선택한 약 가격을 담는 변수
 Total = 0
 
 
-# 학생이 선택한 모든 약의 가격을 더하는 함수 
+# 학생이 선택한 약 가격을 더하는 함수 
 def Add_Medicine_Price ():
         global Total    
         if Medicine_List[Student_Number][i] == "타이레놀":
@@ -303,10 +271,6 @@ def Add_Medicine_Price ():
         elif Medicine_List[Student_Number][i] == "베아제":
                 Total += 1700
 
-
-#학생이 약을 선택한 개수에 맞춰서 약 값을 계산
-# 약을 3개 선택한 경우, 2개 선택한 경우, 1개 선택한 경우에 따라서
-# 계산식이 달라진다.
 
 
 # 1) 학생이 구매한 약이 3개일 경우 실행되는 계산식 
@@ -329,9 +293,10 @@ else:
                 Add_Medicine_Price()
 
 
-# 학생이 지불한 금액을 저장하는 Money 변수 선언
 print('''\n\n\n          <결제창>    \n''')
 print(f"\n지불하실 금액은 {Total}원입니다.")
+
+# 학생이 지불한 금액을 저장하는 Money 변수 선언
 Money = int(input("돈을 투입구에 넣어주세요. \n\n99번. 종료하기\n\n"))
 
 
@@ -340,7 +305,7 @@ if Money == 99:
         Close_Message()
 
 
-# 지불해야 할 돈에 딱 맞게 돈을 지불한 경우
+# 지불해야 할 돈에 맞게 돈을 지불한 경우
 elif Money == Total:
         print('''\n\n\n          -구매완료-    \n''')
         print("\n\n구매가 완료됐습니다. \n투입구에서 약을 받아가 주세요.")
@@ -360,7 +325,7 @@ elif Money > Total:
 # 부족한 금액을 지불한 경우
 else :
         # 얼마나 부족한 금액을 지불했는지 알려주는 lack_money 변수 선언
-        # 5000원을 지불해야하는데 학생이 1000원을 지불했다면 4000원을 덜 지불한 것이니
+        # 예) 5000원을 지불해야하는데 학생이 1000원을 지불했다면 4000원을 덜 지불한 것이니
         # lack_money에는 4000원이 저장된다.
     lack_money = abs(Money - Total)
     print('''\n\n\n          -잔액부족-    \n''')
